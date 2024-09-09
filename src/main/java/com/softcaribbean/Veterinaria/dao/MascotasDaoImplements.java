@@ -21,10 +21,9 @@ public class MascotasDaoImplements implements MascotasDaoInterface {
     @Override
     public void insert(MascotasDTO mascotasDTO) {
 
-        String INSERT = "INSERT INTO public.mascotas(id,nombre,especie,raza,fecha_nacimiento,tipo_identificacion,id_propietario,nombre_propietario,ciudad,direccion,telefono,fecha_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String INSERT = "INSERT INTO public.mascotas(nombre,especie,raza,fecha_nacimiento,tipo_identificacion,id_propietario,nombre_propietario,ciudad,direccion,telefono) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(INSERT,
-                mascotasDTO.getId(),
                 mascotasDTO.getNombre(),
                 mascotasDTO.getEspecie(),
                 mascotasDTO.getRaza(),
@@ -34,8 +33,7 @@ public class MascotasDaoImplements implements MascotasDaoInterface {
                 mascotasDTO.getNombre_propietario(),
                 mascotasDTO.getCiudad(),
                 mascotasDTO.getDireccion(),
-                mascotasDTO.getTelefono(),
-                mascotasDTO.getFecha_registro());
+                mascotasDTO.getTelefono());
 
         return;
     }
@@ -65,10 +63,9 @@ public class MascotasDaoImplements implements MascotasDaoInterface {
     @Override
     public void update(MascotasDTO mascotasDTO) {
 
-        String UPDATE = "UPDATE mascotas SET id=?,nombre=?,especie=?,raza=?,fecha_nacimiento=?,tipo_identificacion=?,id_propietario=?,nombre_propietario=?,ciudad=?,direccion=?,telefono=?,fecha_registro=? WHERE id=?";
+        String UPDATE = "UPDATE mascotas SET nombre=?,especie=?,raza=?,fecha_nacimiento=?,tipo_identificacion=?,id_propietario=?,nombre_propietario=?,ciudad=?,direccion=?,telefono=?,fecha_registro=? WHERE id=?";
 
         jdbcTemplate.update(UPDATE,
-                mascotasDTO.getId(),
                 mascotasDTO.getNombre(),
                 mascotasDTO.getEspecie(),
                 mascotasDTO.getRaza(),

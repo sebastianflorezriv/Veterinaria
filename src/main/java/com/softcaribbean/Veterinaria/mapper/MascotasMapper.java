@@ -5,13 +5,14 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 
 public class MascotasMapper implements RowMapper<MascotasDTO> {
 
     @Override
     public MascotasDTO mapRow(ResultSet resultSet, int i) throws SQLException {
         MascotasDTO masc=new MascotasDTO();
-        masc.setId(resultSet.getString("id"));
+        masc.setId(resultSet.getObject("id", UUID.class));
         masc.setNombre(resultSet.getString("nombre"));
         masc.setEspecie(resultSet.getString("especie"));
         masc.setRaza(resultSet.getString("raza"));
