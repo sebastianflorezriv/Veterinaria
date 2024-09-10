@@ -3,6 +3,7 @@ package com.softcaribbean.Veterinaria.controller;
 import com.softcaribbean.Veterinaria.business.MascotasBusinessInterface;
 import com.softcaribbean.Veterinaria.dto.MascotasDTO;
 import com.softcaribbean.Veterinaria.mensajes.ResponseMessage;
+import com.softcaribbean.Veterinaria.utils.Credenciales;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -77,6 +78,20 @@ public class MascotasController {
             message = new ResponseMessage<>(406, exception.getMessage(),null );
         }
         return ResponseEntity.ok(message);
+    }
+
+
+    @PostMapping("/login")
+    public ResponseEntity<ResponseMessage<String>> login(@RequestBody Credenciales credenciales) {
+        ResponseMessage<String> responseMessage;
+
+        if ("admin".equals(credenciales.getUsuario()) && "password".equals(credenciales.getContraseña())) {
+            responseMessage = new ResponseMessage<>(200, "Inicio de sesión exitoso", null);
+            return ResponseEntity.ok(responseMessage);
+        } else {
+            responseMessage = new ResponseMessage<>(401, "Credenciales incorrectas", null);
+            return ResponseEntity.status(401).body(responseMessage);
+        }
     }
 
 }
